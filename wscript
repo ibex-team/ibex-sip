@@ -8,6 +8,8 @@ def options (opt):
 	opt.add_option ("--with-sip", action="store_true",
 			dest="WITH_SIP", help = "Use Semi-infinite programming plugin")
 
+	opt.plugins["sip"] = "WITH_SIP"
+	
 ######################
 ##### configure ######
 ######################
@@ -21,9 +23,6 @@ def configure (conf):
 	
 	conf.end_msg ("enabled")
 		
-	if not conf.options.WITH_OPTIM:
-		conf.fatal ("The SIP plugin requires IbexOpt: please run configure with --with-optim")
-
 	conf.env.append_unique ("IBEX_PLUGIN_USE_LIST", "SIP")
 	
 	# Add information in ibex_Setting
